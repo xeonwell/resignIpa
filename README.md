@@ -10,3 +10,4 @@ re-codesign outdated ios apps
 - 如果不能执行， 请修改后缀为.command或者在命令行执行如下命令 `chmod +x resignIpa.sh`
 - 将 `~/Library/Developer/Xcode/Archives` 的包复制一份出来测试，打包会替换其中的部分文件
 - 重签Frameworks和dylib未经测试
+- 如果报错"xcrun: error: unable to find utility "PackageApplication", not a developer tool or in PATH", 请参考代码里的方式处理
