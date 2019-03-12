@@ -140,6 +140,14 @@ do
                     codesign -f -s "${resignCer}" --entitlements entitlements.plist "${app}"
                     # codesign -f -s "iOS Distribution: xxx Co., LTD." "${app}"
 
+                    # 2019-03-12
+                    # 如果报下面的错误（xcode9+），则需要在对应目录增加可执行脚本，命名为PackageApplication
+                    # xcrun: error: unable to find utility "PackageApplication", not a developer tool or in PATH
+                    # cd /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin && sudo touch PackageApplication && vim PackageApplication
+                    # add following codes
+                    # https://gist.github.com/anonymous/48f3e4c5ae25313dc0fe10d9ec50c3fc
+                    # and then: sudo chmod +x PackageApplication
+                    
                     # xcrun  -sdk iphoneos PackageApplication -v "${app}" -o "${outputDir}/${outputName}.ipa" --sign "${resignCer}" --embed ${resignPrivisioning##*/} > /dev/null
                     xcrun -sdk iphoneos PackageApplication -v "${app}" -o "${outputDir}/${outputName}.ipa" --embed ${resignPrivisioning##*/} > /dev/null
 
